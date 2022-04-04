@@ -1,0 +1,26 @@
+{
+  "name": "shopify-basicshop",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ik-code/shopify-basicshop.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ik-code/shopify-basicshop/issues"
+  },
+  "homepage": "https://github.com/ik-code/shopify-basicshop#readme",
+  "devDependencies": {
+    "@shopify/themekit": "^1.1.9",
+    "gulp": "^4.0.2",
+    "gulp-clean-css": "^4.3.0",
+    "gulp-sass": "^5.1.0",
+    "sass": "^1.49.11"
+  }
+}
