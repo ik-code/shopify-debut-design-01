@@ -9,6 +9,11 @@
         @content
     }
 }
+@mixin _820max {
+    @media only screen and (max-width: 820px)  {
+        @content
+    }
+}
 @mixin _768max {
     @media only screen and (max-width: 768px)  {
         @content
@@ -36,6 +41,11 @@
 }
 @mixin _768min {
     @media only screen and (min-width: 768px)  {
+        @content
+    }
+}
+@mixin _820min {
+    @media only screen and (min-width: 820px)  {
         @content
     }
 }

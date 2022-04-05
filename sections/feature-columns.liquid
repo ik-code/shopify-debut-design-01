@@ -5,7 +5,11 @@
     </div>
   {% endif %}
 
-  <div class="grid {% unless section.blocks.size == 5 %}grid--uniform{% endunless %} grid--flush-bottom">
+  <div class="feature-columns__wrapper-cols {% unless section.blocks.size == 5 %}grid--uniform{% endunless %} 
+  {%- comment -%}  
+  grid grid--flush-bottom 
+  {%- endcomment -%}
+  ">
     {%- assign grid_item_width = 'medium-up--one-third' -%}
     {%- assign max_height = 345 -%}
     {% case section.blocks.size %}
@@ -26,60 +30,64 @@
       {% else %}
         {%- assign column_width = grid_item_width -%}
       {% endif %}
-      <div class="grid__item {{ column_width }} text-{{ section.settings.align_text }}" {{ block.shopify_attributes }}>
-        {% if block.settings.enable_image %}
-          {% if block.settings.image != blank %}
-            {% capture img_id %}TextColumnImage-{{ block.id }}{% endcapture %}
-            {% capture wrapper_id %}TextColumnImageWrapper-{{ block.id }}{% endcapture %}
-            {%- assign img_url = block.settings.image | img_url: '1x1' | replace: '_1x1.', '_{width}x.' -%}
-            {% include 'image-style', image: block.settings.image, height: max_height, wrapper_id: wrapper_id, img_id: img_id %}
-            <div id="{{ wrapper_id }}" class="feature-row__image-wrapper js">
-              <div style="padding-top:{{ 1 | divided_by: block.settings.image.aspect_ratio | times: 100}}%;" data-image-loading-animation>
-                <img id="{{ img_id }}"
-                     class="feature-row__image lazyload"
-                     data-src="{{ img_url }}"
-                     data-widths="[180, 360, 540, 720, 900, 1080, 1296, 1512, 1728, 2048]"
-                     data-aspectratio="{{ block.settings.image.aspect_ratio }}"
-                     data-sizes="auto"
-                     alt="{{ block.settings.image.alt | escape }}">
+      <div class="grid__item feature-columns__wrapper-col {{ column_width }} text-{{ section.settings.align_text }}" {{ block.shopify_attributes }}>
+        <div class="feature-columns__col">
+          {% if block.settings.enable_image %}
+            {% if block.settings.image != blank %}
+              {% capture img_id %}TextColumnImage-{{ block.id }}{% endcapture %}
+              {% capture wrapper_id %}TextColumnImageWrapper-{{ block.id }}{% endcapture %}
+              {%- assign img_url = block.settings.image | img_url: '1x1' | replace: '_1x1.', '_{width}x.' -%}
+              {% include 'image-style', image: block.settings.image, height: max_height, wrapper_id: wrapper_id, img_id: img_id %}
+              <div id="{{ wrapper_id }}" class="feature-row__image-wrapper js">
+                <div style="padding-top:{{ 1 | divided_by: block.settings.image.aspect_ratio | times: 100}}%;" data-image-loading-animation>
+                  <img id="{{ img_id }}"
+                      class="feature-row__image lazyload"
+                      data-src="{{ img_url }}"
+                      data-widths="[180, 360, 540, 720, 900, 1080, 1296, 1512, 1728, 2048]"
+                      data-aspectratio="{{ block.settings.image.aspect_ratio }}"
+                      data-sizes="auto"
+                      alt="{{ block.settings.image.alt | escape }}">
+                </div>
               </div>
-            </div>
-            <noscript>
+              <noscript>
+                <p>
+                  {{ block.settings.image | img_url: '480x480', scale: 2 | img_tag: block.settings.image.alt, 'feature-row__image' }}
+                </p>
+              </noscript>
+            {% else %}
               <p>
-                {{ block.settings.image | img_url: '480x480', scale: 2 | img_tag: block.settings.image.alt, 'feature-row__image' }}
+                {{ 'image' | placeholder_svg_tag: 'placeholder-svg' }}
               </p>
-            </noscript>
-          {% else %}
-            <p>
-              {{ 'image' | placeholder_svg_tag: 'placeholder-svg' }}
-            </p>
+            {% endif %}
           {% endif %}
-        {% endif %}
-        {% if block.settings.title != blank %}
-          <h3 class="h4">{{ block.settings.title | escape }}</h3>
-        {% endif %}
-        {% if block.settings.text != blank %}
-          <div class="rte-setting">{{ block.settings.text }}</div>
-        {% endif %}
+          <div class="title-text-holder">
+            {% if block.settings.title != blank %}
+              <h3 class="h4">{{ block.settings.title | escape }}</h3>
+            {% endif %}
+            {% if block.settings.text != blank %}
+              <div class="rte-setting">{{ block.settings.text }}</div>
+            {% endif %}
+          </div>
 
-        {% if block.settings.button_label != blank and block.settings.button_link != blank %}
-          {%- capture ariaLabel -%}
-            {{- block.settings.button_label -}}
-            {%- if block.settings.button_link.type == 'frontpage_link' -%}
-              : {{ 'homepage.general.title' | t -}}
-            {%- elsif block.settings.button_link.type == 'catalog_link' -%}
-              : {{ 'collections.catalog.title' | t -}}
-            {%- elsif block.settings.button_link.object.title -%}
-              : {{ block.settings.button_link.object.title -}}
-            {%- endif -%}
-          {%- endcapture -%}
+          {% if block.settings.button_label != blank and block.settings.button_link != blank %}
+            {%- capture ariaLabel -%}
+              {{- block.settings.button_label -}}
+              {%- if block.settings.button_link.type == 'frontpage_link' -%}
+                : {{ 'homepage.general.title' | t -}}
+              {%- elsif block.settings.button_link.type == 'catalog_link' -%}
+                : {{ 'collections.catalog.title' | t -}}
+              {%- elsif block.settings.button_link.object.title -%}
+                : {{ block.settings.button_link.object.title -}}
+              {%- endif -%}
+            {%- endcapture -%}
 
-          <a href="{{ block.settings.button_link }}"
-            class="btn btn--secondary btn--small"
-            aria-label="{{ ariaLabel | escape }}">
-            {{- block.settings.button_label | escape -}}
-          </a>
-        {% endif %}
+            <a href="{{ block.settings.button_link }}"
+              class="btn btn--secondary btn--small"
+              aria-label="{{ ariaLabel | escape }}">
+              {{- block.settings.button_label | escape -}}
+            </a>
+          {% endif %}
+        </div>
       </div>
     {% endfor %}
   </div>
