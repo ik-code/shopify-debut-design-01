@@ -7,7 +7,10 @@
     Usage:
     {% include 'site-nav', linklist: section.settings.main_linklist, wrapper_class: 'site-nav--centered' %}
 {% endcomment %}
-<ul class="site-nav list--inline{% if wrapper_class != blank %} {{ wrapper_class }}{% endif %}" id="SiteNav">
+
+<ul class="site-nav list--inline{% if wrapper_class != blank %} grid__item .medium-up--push-two-twelfths logo-align--center 
+{%- comment -%}{{ wrapper_class }}{%- endcomment -%}
+{% endif %}" id="SiteNav">
   {% for link in linklists[linklist].links %}
     {%- assign child_list_handle = link.title | handleize -%}
 
@@ -90,3 +93,44 @@
     {% endif %}
   {% endfor %}
 </ul>
+
+<div class="site-header__icons-wrapper">
+
+  <button type="button" class="btn--link site-header__icon site-header__search-toggle js-drawer-open-top" data-predictive-search-open-drawer>
+    {% include 'icon-search' %}
+    <span class="icon__fallback-text">{{ 'layout.navigation.search' | t }}</span>
+  </button>
+
+  {% if shop.customer_accounts_enabled %}
+    {% if customer %}
+      <a href="{{ routes.account_url }}" class="site-header__icon site-header__account">
+        {% include 'icon-login' %}
+        <span class="icon__fallback-text">{{ 'layout.customer.account' | t }}</span>
+      </a>
+    {% else %}
+      <a href="{{ routes.account_login_url }}" class="site-header__icon site-header__account">
+        {% include 'icon-login' %}
+        <span class="icon__fallback-text">{{ 'layout.customer.log_in' | t }}</span>
+      </a>
+    {% endif %}
+  {% endif %}
+
+  <a href="{{ routes.cart_url }}" class="site-header__icon site-header__cart">
+    {% include 'icon-cart' %}
+    <span class="icon__fallback-text">{{ 'layout.cart.title' | t }}</span>
+    <div id="CartCount" class="site-header__cart-count{% if cart.item_count == 0 %} hide{% endif %} critical-hidden" data-cart-count-bubble>
+      <span data-cart-count>{{ cart.item_count }}</span>
+      <span class="icon__fallback-text medium-up--hide">{{ 'layout.cart.items_count' | t: count: cart.item_count }}</span>
+    </div>
+  </a>
+
+  {%- comment -%}
+    {% unless linklists[section.settings.main_linklist] == blank %}
+    <button type="button" class="btn--link site-header__icon site-header__menu js-mobile-nav-toggle mobile-nav--open" aria-controls="MobileNav"  aria-expanded="false" aria-label="{{ 'layout.navigation.menu' | t }}">
+      {% include 'icon-hamburger' %}
+      {% include 'icon-close' %}
+    </button>
+  {% endunless %}
+  {%- endcomment -%}
+
+</div>
