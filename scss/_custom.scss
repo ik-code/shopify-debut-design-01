@@ -16,6 +16,10 @@
   /* NAVIGATION */
   header.site-header .site-header__logo {
     margin-bottom: 30px;
+    background-color:$color-white;
+  }
+  header.site-header .site-header__logo a{
+    background-color:$color-white;
   }
   .px-20 {
     padding-top: 20px;
@@ -25,11 +29,41 @@
   ul.site-nav li {
     display: inline-block;
   }
+  ul.site-nav li.site-nav--active a.site-nav__link--active,
+  ul.site-nav li a.site-nav__link:hover,
+  ul.site-nav li a.site-nav__link:active,
+  ul.site-nav li a.site-nav__link:focus{
+    color:$color-orange;
+    text-decoration: none;
+  }
+  .site-nav__link:focus .site-nav__label, .site-nav__link:not([disabled]):hover .site-nav__label {
+    border-bottom-color:unset;
+    border-bottom:unset;
+  }
+  ul.site-nav li.site-nav--active a.site-nav__link--active .site-nav__label,
+  ul.site-nav li a.site-nav__link:hover .site-nav__label {
+    border-bottom: unset;
+    border-bottom-color:transparent;
+  }
+
+  ul.site-nav li a{
+    color: $color-black;
+    font-family: $font-family-Montserrat;
+    font-size: 14px;
+    font-weight: bold;
+    letter-spacing: 0;
+    line-height: 18px;
+    text-decoration: none;
+    &:hover{
+      color:$color-orange;
+    }
+  }
 
   @include _768min {
-    ul.site-nav li:not(:last-child) a::after {
+    ul.site-nav li:not(:last-child) a.site-nav__link::after {
       content: '-';
       margin-left: 7px;
+      color: $color-black;
     }
     ul.site-nav li a {
       padding-left: 0px;
@@ -284,7 +318,10 @@
       @include _375max{
         width: 230px;
       }
-    
+      .collection-grid-item__title-wrapper::before{
+        background-color: unset
+      }
+      background-color: unset;
       .collection-grid-item__title-wrapper{
         opacity: 1;
         .collection-grid-item__title{
