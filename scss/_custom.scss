@@ -121,7 +121,7 @@
     max-height: 100px;
     width: 100%;
     padding: 16px 20px;
-    border-radius: 4px;
+    border-radius: $border-radius;
     background-color: #FFFFFF;
     box-shadow: 0 2px 16px 0 rgba(0,0,0,0.1);
 
@@ -145,4 +145,104 @@
       line-height: 18px;
     }
   } 
+  /* SLIDESHOW */
+
+  .slideshow__overlay::before{
+    opacity: 0;
+  }
+  .slideshow__text-content-list,
+  .slideshow__btn-wrapper {
+    text-align: left;
+    padding-left: 33px;
+  }
+  .slideshow__btn-wrapper {
+    a.btn.slideshow__btn{
+      min-height: unset;
+      background-color: $color-white;
+      color: $color-black;
+      border-radius:$border-radius;
+      padding: 7px 20px;
+      font-family: $font-family-Montserrat;
+      font-size: 14px;
+      font-weight: 500;
+      letter-spacing: 0;
+      line-height: 24px;
+      text-transform: capitalize;
+    }
+  }
+  .slideshow__controls:hover .slideshow__arrows, 
+  .slideshow__controls:focus .slideshow__arrows, 
+  .slideshow__controls--hover .slideshow__arrows,
+  .slideshow__arrows {
+    background-color:transparent;
+  }
+  ul.slick-dots{
+    li.slick-active{
+      width: 14px;
+      height: 14px;
+      a,
+      a::before{
+        width: 14px;
+        height: 14px;
+      }
+    }
+  }
+
+
+  /* SLIDESHOW SMALL  */ 
+  .slideshow.slideshow--small{
+    height: 355px;
+    .slideshow__text-content-list{
+      h2{
+      color: $color-white;
+      font-family: $font-family-Montserrat;
+      font-size: 60px;
+      font-weight: bold;
+      letter-spacing: 0;
+      line-height: 72px;
+      text-shadow: unset;
+      margin: 0;
+      }
+      span.slideshow__subtitle{
+        display: inline-block;
+        max-width: 490px;;
+        color: $color-white;
+        font-family: $font-family-Montserrat;
+        font-size: 36px;
+        font-weight: bold;
+        letter-spacing: 0;
+        line-height: 40px;
+        text-shadow: unset;
+      }
+    }
+  }
+
+
+  /* SLIDESHOW MEDIUM */
+  .slideshow.slideshow--medium{
+    height: 515px;
+      .slideshow__text-content-list{
+        h2{
+          max-width: 447px;
+          color: $color-white;
+          font-family: $font-family-Montserrat;
+          font-size: 60px;
+          font-weight: bold;
+          letter-spacing: 0;
+          line-height: 72px;
+      }
+      span.slideshow__subtitle{
+        display: inline-block;
+        max-width: 355px;
+        color: $color-white;
+        font-family: $font-family-lato;
+        font-size: 16px;
+        letter-spacing: 0;
+        line-height: 28px;
+      }
+      
+
+
+    }
+  }
 }

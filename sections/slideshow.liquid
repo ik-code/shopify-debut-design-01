@@ -19,6 +19,7 @@
 {%- assign text_horizontal_alignment = text_alignments.first -%}
 {%- assign text_vertical_alignment = text_alignments.last | strip -%}
 
+<div class="page-width">
 <div data-section-id="{{ section.id }}" data-section-type="slideshow-section">
   {%- if section.blocks.size > 0 -%}
     <div id="SlideshowWrapper-{{ section.id }}" class="slideshow-wrapper" role="region" aria-label="slideshow" aria-describedby="slideshow-info" tabindex="-1" data-slider>
@@ -113,7 +114,10 @@
         {%- if section.blocks.size > 1 -%}
           {%- assign arrows_width = section.blocks.size | times: 18 | plus: 115 -%}
           <div class="slideshow__arrows"
-               style="width: {{- arrows_width -}}px">
+          {%- comment -%}
+          style="width: {{- arrows_width -}}px" 
+          {%- endcomment -%}
+          >
             <button class="slideshow__arrow slideshow__arrow-previous" aria-label="{{ 'sections.slideshow.previous_slide' | t }}" data-slider-button>{% include 'icon-chevron-left' %}</button>
             <button class="slideshow__arrow slideshow__arrow-next" aria-label="{{ 'sections.slideshow.next_slide' | t }}" data-slider-button data-slider-button-next>{% include 'icon-chevron-right' %}</button>
 
@@ -197,6 +201,7 @@
       {{ 'homepage.onboarding.no_content' | t }}
     </div>
   {% endif %}
+</div>
 </div>
 
 {% schema %}
