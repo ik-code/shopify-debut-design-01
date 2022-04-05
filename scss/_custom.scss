@@ -88,11 +88,18 @@
   .search-form__container,
   .search-bar__interior {
     background-color: transparent;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0;
+
   }
   .search-form__container{
     justify-content: space-between;
 
 
+  }
+  #SearchDrawer.drawer{
+    position: absolute;
   }
   #SearchDrawer.search-bar.drawer {
     display: flex;
