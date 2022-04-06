@@ -1,0 +1,113 @@
+<div class="page-width">
+    {% if section.settings.title != blank %}
+    <div class="section-header text-center">
+        <h2>{{ section.settings.title | escape }}</h2>
+    </div>
+    {% endif %}
+
+    <div class="collection-list__holder collection-list-tabs">
+        <div class="tab">
+            <div>
+                <button class="tablinks" data-id="id0">Damen</button>
+            </div>
+            <div>
+                <button class="tablinks" data-id="id1">Winter Kollektion</button>
+            </div>
+            <div>
+                <button class="tablinks" data-id="id2">Herren</button>
+            </div>
+        </div>
+
+
+        {%- comment -%} 3 Tabs with ul-li {%- endcomment -%}
+
+
+        {% for block in section.blocks limit: section.blocks.size %}
+        <div id="id{% increment counter %}" class="tabcontent">
+            <ul class="collection-list__wrapper ">
+                <li class="collection-list__item " {{ block.shopify_attributes }}>
+                    {%- assign collection = collections[block.settings.collection_1] -%}
+                    {% include 'collection-grid-item', collection: collection %}
+                </li>
+                <li class="collection-list__item " {{ block.shopify_attributes }}>
+                    {%- assign collection = collections[block.settings.collection_2] -%}
+                    {% include 'collection-grid-item', collection: collection %}
+                </li>
+                <li class="collection-list__item " {{ block.shopify_attributes }}>
+                    {%- assign collection = collections[block.settings.collection_3] -%}
+                    {% include 'collection-grid-item', collection: collection %}
+                </li>
+            </ul>
+        </div>
+
+        {% endfor %}
+
+
+
+    </div>
+
+</div>
+
+
+
+{% schema %}
+{
+"name": "Collection List Tabs",
+"class": "index-section",
+"max_blocks": 3,
+"settings": [
+{
+"type": "text",
+"id": "title",
+"label": "Add a collection list tabs"
+}
+],
+"templates": ["index"],
+"presets": [
+{
+"name": "Collection List Tabs",
+"category": "Tabs"
+}
+],
+"blocks": [
+{ "type": "collection_list",
+"name": "Collection list",
+"settings": [
+{
+"label": "Collection 1",
+"id": "collection_1",
+"type": "collection"
+},
+{
+"label": "Collection 2",
+"id": "collection_2",
+"type": "collection"
+},
+{
+"label": "Collection 3",
+"id": "collection_3",
+"type": "collection"
+}
+
+]
+}
+]
+}
+{% endschema %}
+
+{% stylesheet %}
+
+
+{% endstylesheet %}
+
+{% javascript %}
+
+document.querySelectorAll('.tablinks').forEach(item => {
+item.addEventListener('click', e => {
+var i, tabcontent, tablinks;
+tabcontent = document.getElementsByClassName("tabcontent");
+for (i = 0; i < tabcontent.length; i++) { tabcontent[i].style.display="none" ; }
+    tablinks=document.getElementsByClassName("tablinks"); for (i=0; i < tablinks.length; i++) {
+    tablinks[i].className=tablinks[i].className.replace(" active", "" ); }
+    document.getElementById(e.currentTarget.getAttribute("data-id")).style.display="block" ; e.currentTarget.className
+    +=" active" ; }) }) {% endjavascript %}
