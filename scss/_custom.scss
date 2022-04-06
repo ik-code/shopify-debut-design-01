@@ -1,6 +1,13 @@
 
 
 .landing {
+
+
+  .index-section {
+    padding-top: 0px;
+    padding-bottom: 50px;
+  }
+
   .shopify-section.index-section{
     @include _1200max{
       padding-top: 10px;
@@ -290,6 +297,49 @@
 
   /* COLLECTION LIST */
 
+   /* horizontal-line-heading*/
+   
+    .hl-heading {
+      width: 100%;
+      margin: 10px 0 40px;
+      text-align: center;
+      line-height: 100%;    
+    }
+
+  @include _576min {
+    .hl-heading span {
+        float: left;
+        margin: 20px 0 -21px;
+        border: 1px solid $color-black;
+        width: 100%;
+    }
+   }
+
+   @include _576max {
+    .hl-heading{
+      display: flex;
+      flex-wrap: wrap;
+    }
+   }
+
+   .hl-heading h2 {
+    font-family: $font-family-Montserrat;
+    font-size: 36px;
+    font-weight: bold;
+    letter-spacing: 0;
+    line-height: 40px;
+    text-transform: capitalize;
+    display: inline;
+    color: $color-black;
+    background-color: $color-white;
+    padding: 0 24px;  
+    width: auto;
+    margin: auto;
+    text-align: center;
+  }
+
+
+  /* collection list */
   .collection-list__holder {
     padding: 0 40px;
     @include _576max{
