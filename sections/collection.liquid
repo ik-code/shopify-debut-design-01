@@ -28,6 +28,24 @@
   <ul class="grid grid--uniform grid--view-items">
     {% for product in collection.products limit: product_limit %}
       <li class="grid__item grid__item--{{section.id}} {{ grid_item_width }}">
+        <span class="label-collection-title">{{ collection.title }}</span>
+        <span class="label-right-side-holder">
+          <svg width="9px" height="39px" viewBox="0 0 9 39" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+            <!-- Generator: sketchtool 52.4 (67378) - http://www.bohemiancoding.com/sketch -->
+            <title>913C5D43-1D94-45A5-BABE-D385BA74F49B</title>
+            <desc>Created with sketchtool.</desc>
+            <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                <g id="Home" transform="translate(-948.000000, -2510.000000)">
+                    <g id="Group-2-Copy-4" transform="translate(952.500000, 2529.500000) scale(-1, 1) translate(-952.500000, -2529.500000) translate(948.000000, 2510.000000)">
+                        <g id="Group-2-Copy-3">
+                            <rect id="Rectangle-Copy-20" fill="#60B300" x="0" y="0" width="9" height="35"></rect>
+                            <polygon id="Rectangle-Copy-21" fill="#417505" points="0 35 9 35 9 39"></polygon>
+                        </g>
+                    </g>
+                </g>
+            </g>
+        </svg>
+        </span>
         {% include 'product-card-grid', max_height: max_height, product: product, show_vendor: section.settings.show_vendor %}
       </li>
     {% else %}
