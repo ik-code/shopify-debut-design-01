@@ -5,6 +5,10 @@ const clean = require('gulp-clean-css');
 const autoprefixer = require('gulp-autoprefixer');
 const cssnano = require('gulp-cssnano');
 const sourcemaps = require('gulp-sourcemaps');
+const zip = require('gulp-zip');
+const del = require('del');
+const copy = require('gulp-copy');
+
 
 var supported = [
     'last 2 versions',
@@ -30,6 +34,32 @@ gulp.task('sass', function(){
     .pipe(gulp.dest('assets'))
 });
 
+gulp.task('copy',  function(done){
+  gulp.src([
+    './**/*',
+    '!./node_modules/**/*',
+    '!./scss/**/*',
+    '!./.gitignore',
+    '!./config.yml',
+    '!./gulpfile.js',
+    '!./README.md',
+    '!./package.json',
+    '!./package-lock.json'
+  ])
+  .pipe(gulp.dest('production/src'))
+
+  done();
+});
+
+gulp.task('zip',  function(done){
+  gulp.src([
+      './production/src/**/*'
+  ])
+		.pipe(zip('_shopify_theme.zip'))
+		.pipe(gulp.dest('production'))
+    done();
+});
+
 gulp.task('watch', function(){
     gulp.watch('scss/*.scss', gulp.series('sass'))
     themeKit.command('watch', {
@@ -37,4 +67,11 @@ gulp.task('watch', function(){
         env: 'development'
     })
 });
+
+gulp.task('del', function(done) {
+  return del(['./production/src/node_modules', './production/src/scss']);
+});
+
+
+gulp.task('production', gulp.series('copy', 'del', 'zip'));
 

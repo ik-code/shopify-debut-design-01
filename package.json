@@ -18,12 +18,16 @@
   "homepage": "https://github.com/ik-code/shopify-basicshop#readme",
   "devDependencies": {
     "@shopify/themekit": "^1.1.9",
+    "del": "^6.0.0",
     "gulp": "^4.0.2",
     "gulp-autoprefixer": "^8.0.0",
+    "gulp-clean": "^0.4.0",
     "gulp-clean-css": "^4.3.0",
+    "gulp-copy": "^4.0.1",
     "gulp-cssnano": "^2.1.3",
     "gulp-sass": "^5.1.0",
     "gulp-sourcemaps": "^3.0.0",
+    "gulp-zip": "^5.1.0",
     "sass": "^1.49.11"
   }
 }
