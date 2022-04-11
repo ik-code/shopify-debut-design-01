@@ -102,6 +102,16 @@
     }
   }
 
+  /*vertical splitter between icons*/
+  .site-header__icon-vertical-separator{
+    font-size: 16px;
+    display: inline-block;
+    margin-bottom: 7px;
+    margin-left: 9px;
+    margin-right: 4px;
+    color:$color-darkgrey;
+  }
+
   /* SEARCH FORM */
   .search-form__container,
   .search-bar__interior {
@@ -226,9 +236,19 @@
       font-weight: 500;
       letter-spacing: 0;
       line-height: 24px;
-
       text-transform: capitalize;
+      transition: all 0.3s ease;
+
+      &:hover{        
+        box-shadow: 0 4px 12px 0 rgba(0,0,0,0.5);
+      }
+      &:active{
+        box-shadow: 0 4px 6px 0 rgba(0,0,0,0.5);
+      }
     }
+  }
+  .slideshow__pause{
+    display: none;
   }
   .slideshow__controls:hover .slideshow__arrows,
   .slideshow__controls:focus .slideshow__arrows,
@@ -558,7 +578,7 @@
 
   .tab button {
     margin-bottom: 16px;
-    color: $color-grey-text;
+    color: $color-black-tab;
     font-family: $font-family-Montserrat;
     font-size: 14px;
     font-weight: bold;

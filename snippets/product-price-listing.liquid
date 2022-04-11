@@ -35,6 +35,7 @@
   {%- if variant.unit_price_measurement %} price--unit-available {% endif -%}"
 >
   {% if show_vendor and product %}
+  {%- comment -%}
     <div class="price__vendor price__vendor--listing">
       <dt>
         <span class="visually-hidden">{{ 'products.product.vendor' | t }}</span>
@@ -43,6 +44,7 @@
         {{ product.vendor }}
       </dd>
     </div>
+    {%- endcomment -%}
   {% endif %}
 
   {%- comment -%}

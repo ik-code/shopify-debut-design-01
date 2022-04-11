@@ -40,7 +40,10 @@
   {%- assign social_icons = true -%}
 {%- endif -%}
 
+{%- comment -%}
 {%- assign payment_width_class = "one-half" -%}
+{%- endcomment -%}
+{%- assign payment_width_class = " " -%}
 {%- if show_selectors -%}
   {%- unless social_icons -%}
     {%- assign payment_width_class = "" -%}
@@ -129,6 +132,10 @@
 .site-footer-item-align-center {
     text-align:center
 }
+.payment-icons{
+  display:flex;
+  justify-content:center;
+}
 
 .copyright-style {
   color: #00222C;
@@ -145,6 +152,13 @@
   .site-footer {
     margin-top: 30px;
     padding: 10px 0 0 0;
+}
+.site-footer__payment-icons{
+  margin: 20px 0;
+}
+
+footer.site-footer .site-footer-item-tall{
+  height: auto;
 }
 
 </style>
@@ -247,7 +261,8 @@
    <hr class="site-footer__hr">
   {%- endcomment -%}
 
-  {%- capture payment_icon_markup -%}
+{%- capture payment_icon_markup -%}
+
   {%- if show_payment_icons -%}
     <div class="grid__item site-footer__payment-icons">
       <span class="visually-hidden">{{ 'general.payment.method' | t }}</span>
@@ -260,8 +275,24 @@
       </ul>
     </div>
   {%- endif -%}
+
+  {%- comment -%} Add payment icons for example {%- endcomment -%}
+  {%- if show_payment_icons == false -%}
+  {% assign enabled_payment_types = 'visa,master,american_express,paypal' | remove: ' ' | split: ',' %}
+    <div class="grid__item site-footer__payment-icons">
+      <span class="visually-hidden">{{ 'general.payment.method' | t }}</span>
+      <ul class="payment-icons list--inline site-footer__icon-list">
+        
+        {% for type in enabled_payment_types %}
+          <li class="payment-icon">
+            {{ type | payment_type_svg_tag: class: 'icon icon--full-color' }}
+          </li>
+        {%- endfor -%}
+      </ul>
+    </div>
+  {%- endif -%}
+
 {%- endcapture -%}
- 
 
   {%- assign socials = "Facebook Twitter Pinterest Instagram Tumblr Snapchat YouTube Vimeo" | split: ' ' -%}
 
@@ -331,7 +362,11 @@
           {%- endform -%}
         </div>
       {%- else -%}
-        <div class="grid__item small--hide {{ payment_width_class }} {% if show_payment_icons %}site-footer-item-center-vertically{% endif %}">{{ payment_icon_markup }}</div>
+
+      {%- comment -%}
+              <div class="grid__item small--hide {{ payment_width_class }} {% if show_payment_icons %}site-footer-item-center-vertically{% endif %}">{{ payment_icon_markup }}</div>
+      {%- endcomment -%}
+
       {%- endif -%}
 
       <div class="grid__item {% if show_selectors or show_payment_icons %}one-half{% endif %} small--one-whole site-footer-item-tall">
@@ -364,6 +399,9 @@
             <small class="site-footer__copyright-content">&copy; {{ 'now' | date: "%Y" }}, {{ shop.name | link_to: routes.root_url }}</small>
             <small class="site-footer__copyright-content site-footer__copyright-content-powered-by">{{ powered_by_link }}</small>
           </div>
+
+          <div class="grid__item small--hide {{ payment_width_class }} {% if show_payment_icons %}site-footer-item-center-vertically{% endif %}">{{ payment_icon_markup }}</div>
+
         {%- endif -%}
       </div>
 

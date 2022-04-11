@@ -124,6 +124,8 @@
     <span class="icon__fallback-text">{{ 'layout.navigation.search' | t }}</span>
   </button>
 
+  <span class="site-header__icon-vertical-separator">|</span>
+
   {% if shop.customer_accounts_enabled %}
     {% if customer %}
       <a href="{{ routes.account_url }}" class="site-header__icon site-header__account">
