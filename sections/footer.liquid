@@ -111,6 +111,10 @@
     border-bottom: 1px solid {{ section.settings.color_footer_text }};
   }
 
+  .grid__item.site-footer__copyright-holder{
+    padding: 0 0 15px 0;
+  }
+
   .site-footer__rte a:hover,
   .site-footer__linklist-item a:hover,
   .site-footer__copyright-content a:hover {
@@ -142,6 +146,7 @@
     margin-top: 30px;
     padding: 10px 0 0 0;
 }
+
 </style>
 
 
@@ -369,13 +374,13 @@
       <div class="grid__item medium-up--hide {{ payment_width_class }} small--one-whole">{{ payment_icon_markup }}</div>
 
       {%- if social_icons and show_selectors -%}
-        <div class="grid__item small--hide site-footer-item-align-right {% if show_payment_icons %}one-half{% endif %}">
+        <div class="grid__item  small--hide site-footer-item-align-right {% if show_payment_icons %}one-half{% endif %}">
           <small class="site-footer__copyright-content">&copy; {{ 'now' | date: "%Y" }}, {{ shop.name | link_to: routes.root_url }}</small>
           <small class="site-footer__copyright-content site-footer__copyright-content--powered-by">{{ powered_by_link }}</small>
         </div>
       {%- endif -%}
 
-      <div class="grid__item small--one-whole {{ copyright_show_class }} site-footer-item-align-right">
+      <div class="grid__item site-footer__copyright-holder small--one-whole {{ copyright_show_class }} site-footer-item-align-right">
         <small class="site-footer__copyright-content">&copy; {{ 'now' | date: "%Y" }}, {{ shop.name | link_to: routes.root_url }}</small>
         <small class="site-footer__copyright-content site-footer__copyright-content--powered-by">{{ powered_by_link }}</small>
       </div>

@@ -69,7 +69,7 @@ gulp.task('zip',  function(done){
   gulp.src([
       './production/src/**/*'
   ])
-		.pipe(zip('_shopify_theme.zip'))
+		.pipe(zip('_shopify_debut_design_01_ik_wds.zip'))
 		.pipe(gulp.dest('production'))
     done();
 });
