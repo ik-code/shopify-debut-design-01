@@ -34,6 +34,20 @@ gulp.task('sass', function(){
     .pipe(gulp.dest('assets'))
 });
 
+gulp.task('sassProduction', function(){
+  return gulp.src('scss/global.scss')
+  .pipe(sass().on('error', sass.logError))
+  .pipe(cssnano({
+      autoprefixer: {browsers: supported, add: true},
+      discardComments: {
+        removeAll: true
+      }
+    }))  
+  .pipe(clean({compatibility: 'ie11'}))
+  .pipe(sourcemaps.write())
+  .pipe(gulp.dest('assets'))
+});
+
 gulp.task('copy',  function(done){
   gulp.src([
     './**/*',
@@ -73,5 +87,5 @@ gulp.task('del', function(done) {
 });
 
 
-gulp.task('production', gulp.series('copy', 'del', 'zip'));
+gulp.task('production', gulp.series('sassProduction','copy', 'del', 'zip'));
 

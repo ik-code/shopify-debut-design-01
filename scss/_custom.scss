@@ -1,4 +1,9 @@
 .landing {
+
+  a.btn.slideshow__btn{
+    min-height: unset;
+  }
+
   .index-section {
     padding-top: 0px;
     padding-bottom: 50px;
@@ -221,6 +226,7 @@
       font-weight: 500;
       letter-spacing: 0;
       line-height: 24px;
+
       text-transform: capitalize;
     }
   }
@@ -377,7 +383,12 @@
       width: 24.82% !important;
     }
     @include _749max {
-      width: 49% !important;
+      width: 44% !important;
+      max-width: 270px;
+    }
+    @include _576max {
+      width: 50% !important;
+      max-width: 270px;
     }
 
     .label-collection-title {
