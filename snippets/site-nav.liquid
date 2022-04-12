@@ -118,44 +118,48 @@
 </ul>
 
 <div class="site-header__icons-wrapper">
-
-  <button type="button" class="btn--link site-header__icon site-header__search-toggle js-drawer-open-top" data-predictive-search-open-drawer>
-    {% include 'icon-search' %}
-    <span class="icon__fallback-text">{{ 'layout.navigation.search' | t }}</span>
-  </button>
-
-  <span class="site-header__icon-vertical-separator">|</span>
-
-  {% if shop.customer_accounts_enabled %}
-    {% if customer %}
-      <a href="{{ routes.account_url }}" class="site-header__icon site-header__account">
-        {% include 'icon-login' %}
-        <span class="icon__fallback-text">{{ 'layout.customer.account' | t }}</span>
-      </a>
-    {% else %}
-      <a href="{{ routes.account_login_url }}" class="site-header__icon site-header__account">
-        {% include 'icon-login' %}
-        <span class="icon__fallback-text">{{ 'layout.customer.log_in' | t }}</span>
-      </a>
+  <div class="search-cart-login-holder">
+    <button type="button" class="btn--link site-header__icon site-header__search-toggle js-drawer-open-top" data-predictive-search-open-drawer>
+      {% include 'icon-search' %}
+      <span class="icon__fallback-text">{{ 'layout.navigation.search' | t }}</span>
+    </button>
+  
+    <span class="site-header__icon-vertical-separator">|</span>
+  
+    {% if shop.customer_accounts_enabled %}
+      {% if customer %}
+        <a href="{{ routes.account_url }}" class="site-header__icon site-header__account">
+          {% include 'icon-login' %}
+          <span class="icon__fallback-text">{{ 'layout.customer.account' | t }}</span>
+        </a>
+      {% else %}
+        <a href="{{ routes.account_login_url }}" class="site-header__icon site-header__account">
+          {% include 'icon-login' %}
+          <span class="icon__fallback-text">{{ 'layout.customer.log_in' | t }}</span>
+        </a>
+      {% endif %}
     {% endif %}
-  {% endif %}
+  
+    <a href="{{ routes.cart_url }}" class="site-header__icon site-header__cart">
+      {% include 'icon-cart' %}
+      <span class="icon__fallback-text">{{ 'layout.cart.title' | t }}</span>
+      <div id="CartCount" class="site-header__cart-count{% if cart.item_count == 0 %} hide{% endif %} critical-hidden" data-cart-count-bubble>
+        <span data-cart-count>{{ cart.item_count }}</span>
+        <span class="icon__fallback-text medium-up--hide">{{ 'layout.cart.items_count' | t: count: cart.item_count }}</span>
+      </div>
+    </a>
+  </div>
 
-  <a href="{{ routes.cart_url }}" class="site-header__icon site-header__cart">
-    {% include 'icon-cart' %}
-    <span class="icon__fallback-text">{{ 'layout.cart.title' | t }}</span>
-    <div id="CartCount" class="site-header__cart-count{% if cart.item_count == 0 %} hide{% endif %} critical-hidden" data-cart-count-bubble>
-      <span data-cart-count>{{ cart.item_count }}</span>
-      <span class="icon__fallback-text medium-up--hide">{{ 'layout.cart.items_count' | t: count: cart.item_count }}</span>
-    </div>
-  </a>
-
-  {%- comment -%}
+  {%- comment -%}  {%- endcomment -%}
     {% unless linklists[section.settings.main_linklist] == blank %}
     <button type="button" class="btn--link site-header__icon site-header__menu js-mobile-nav-toggle mobile-nav--open" aria-controls="MobileNav"  aria-expanded="false" aria-label="{{ 'layout.navigation.menu' | t }}">
       {% include 'icon-hamburger' %}
-      {% include 'icon-close' %}
+      {%- comment -%}
+        {% include 'icon-close' %}
+      {%- endcomment -%}
+      <svg aria-hidden="true" focusable="false" role="presentation" class="icon icon-close" viewBox="0 0 40 40"><path d="M23.868 20.015L39.117 4.78c1.11-1.108 1.11-2.77 0-3.877-1.109-1.108-2.773-1.108-3.882 0L19.986 16.137 4.737.904C3.628-.204 1.965-.204.856.904c-1.11 1.108-1.11 2.77 0 3.877l15.249 15.234L.855 35.248c-1.108 1.108-1.108 2.77 0 3.877.555.554 1.248.831 1.942.831s1.386-.277 1.94-.83l15.25-15.234 15.248 15.233c.555.554 1.248.831 1.941.831s1.387-.277 1.941-.83c1.11-1.109 1.11-2.77 0-3.878L23.868 20.015z" class="layer"></path></svg>
     </button>
   {% endunless %}
-  {%- endcomment -%}
+
 
 </div>
