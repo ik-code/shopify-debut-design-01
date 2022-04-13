@@ -765,7 +765,7 @@
       display: flex;
       justify-content: space-between;
 
-      li.site-nav__childlist-item:nth-child(1) {
+      li.site-nav__childlist-item:nth-child(odd) {
         flex: 20%;
         a.site-nav__link.site-nav__child-link.site-nav__child-link--parent {
           margin-bottom: 32px;
@@ -776,7 +776,7 @@
           }
         }
       }
-      li.site-nav__childlist-item:nth-child(2) {
+      li.site-nav__childlist-item:nth-child(even) {
         flex: 70%;
         a.site-nav__link.site-nav__child-link.site-nav__child-link--parent {
           margin-bottom: 26px;
@@ -791,13 +791,15 @@
         }
         ul {
           display: flex;
-          justify-content: space-between;
+          flex-wrap: wrap;
+          justify-content: start;
           @include _576max {
             justify-content: center;
             flex-direction: column;
           }
           li {
             width: 30%;
+            margin-right: 15px;
             @include _749max {
               width: 99%;
               display: flex;
