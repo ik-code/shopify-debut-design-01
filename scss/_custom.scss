@@ -20,7 +20,27 @@
     padding-right: 15px;
   }
 
+  /* MOBILE NAV */
+  .mobile-nav-wrapper {
+    @include _749max {
+      top: 92px;
+    }
+  }
+  .btn--link:not([disabled]):hover, .btn--link:focus {
+  
+    color:$color-black;
+  
+  }
+
+
   /* NAVIGATION */
+
+  nav ul.site-nav{
+    @include _749max{
+      display: none;
+    }
+  }
+
   .site-nav a{
     padding: 9px 10px;
   }
@@ -97,8 +117,17 @@
     nav .site-header__icons-wrapper {
       display: flex;
       justify-content: center;
+      @include _749max {
+        justify-content: space-between;
+      }
     }
   }
+
+  .search-cart-login-holder {
+    display: flex;
+    align-items: center;
+  }
+
   nav .site-header__icons-wrapper a {
     .site-header__cart-count.critical-hidden {
       background-color: $color-red;
@@ -116,6 +145,10 @@
   }
 
   /* SEARCH FORM */
+  .search-bar__close {
+    margin-right: 0;
+  }
+
   .search-form__container,
   .search-bar__interior {
     background-color: transparent;
@@ -140,7 +173,7 @@
       width: 100%;
       border-top: 1px solid $color-darkgrey;
       border-bottom: 1px solid $color-darkgrey;
-      padding: 20px 0 20px 0;
+      padding: 46px 0;
       background-color: $color-grey;
     }
   }
@@ -185,6 +218,10 @@
     @include _1200max {
       justify-content: space-evenly;
     }
+    @include _768max {
+      justify-content: center;
+    }
+
   }
   .feature-columns__wrapper-col {
     display: flex;
@@ -193,6 +230,9 @@
     padding: 0;
     @include _1200max {
       margin-bottom: 30px;
+    }
+    @include _768max{
+      width: 100%;
     }
   }
   .feature-columns__col {
@@ -210,6 +250,17 @@
       margin: 0 20px 0 7px;
     }
 
+    @include _768max {
+      .title-text-holder {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: stretch;
+        justify-content: stretch;
+      }
+    }
+
+
     .title-text-holder h3 {
       font-family: $font-family-lato;
       font-weight: bold;
@@ -222,6 +273,9 @@
     }
     p {
       max-width: 260px;
+      @include _768max {
+        max-width: 100%;
+      }
       color: $color-grey-text;
       font-family: Lato;
       font-size: 14px;
@@ -230,6 +284,26 @@
     }
   }
   /* SLIDESHOW */
+  @include _749max {
+    .slideshow__title, 
+    .slideshow__subtitle {
+      display: block;
+      
+    }
+   li h2.h1.slideshow__title.mega-title {
+      font-size: 38px;
+      font-weight: 700;
+      letter-spacing: 0;
+      line-height: 46px;
+    }
+    ul.slideshow__text-content-list li>span.mega-subtitle.slideshow__subtitle {
+      font-size: 16px;
+      font-weight: 700;
+      letter-spacing: 0;
+      line-height: 28px;
+    }
+
+  }
 
   .slideshow__overlay::before {
     opacity: 0;
@@ -295,10 +369,10 @@
       h2 {
         color: $color-white;
         font-family: $font-family-Montserrat;
-        font-size: 60px;
+        font-size: 48px;
         font-weight: bold;
         letter-spacing: 0;
-        line-height: 72px;
+        line-height: 68px;
         text-shadow: unset;
         margin: 0;
       }
@@ -307,12 +381,37 @@
         max-width: 490px;
         color: $color-white;
         font-family: $font-family-Montserrat;
-        font-size: 36px;
+        font-size: 22px;
         font-weight: bold;
         letter-spacing: 0;
         line-height: 40px;
         text-shadow: unset;
+        @include _749max{
+          font-size: 16px;
+          font-weight: 700;
+          letter-spacing: 0;
+          line-height: 28px;
+        }
+
       }
+    }
+  }
+  @include _749max {
+    .slideshow__title, 
+    .slideshow__subtitle {
+      display: block;
+    }
+    .slideshow__btn {
+      display: flex;
+      width: fit-content;
+      margin-top: 10px;
+    }
+
+   li h2.h1.slideshow__title.mega-title {
+      font-size: 38px;
+      font-weight: 700;
+      letter-spacing: 0;
+      line-height: 46px;
     }
   }
 
@@ -324,10 +423,10 @@
         max-width: 447px;
         color: $color-white;
         font-family: $font-family-Montserrat;
-        font-size: 60px;
+        font-size: 46px;
         font-weight: bold;
         letter-spacing: 0;
-        line-height: 72px;
+        line-height: 56px;
       }
       span.slideshow__subtitle {
         display: inline-block;
