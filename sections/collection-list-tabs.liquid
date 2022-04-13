@@ -8,13 +8,13 @@
     <div class="collection-list__holder collection-list-tabs">
         <div class="tab">
             <div>
-                <button class="tablinks active" data-id="id0">Damen</button>
+                <button class="tablinks active" data-id="id0">{{ section.blocks[0].settings.title }}</button>
             </div>
             <div>
-                <button class="tablinks" data-id="id1">Winter Kollektion</button>
+                <button class="tablinks" data-id="id1">{{ section.blocks[1].settings.title }}</button>
             </div>
             <div>
-                <button class="tablinks" data-id="id2">Herren</button>
+                <button class="tablinks" data-id="id2">{{ section.blocks[2].settings.title }}</button>
             </div>
         </div>
 
@@ -52,45 +52,52 @@
 
 {% schema %}
 {
-"name": "Collection List Tabs",
-"class": "index-section",
-"max_blocks": 3,
-"settings": [
-{
-"type": "text",
-"id": "title",
-"label": "Add a collection list tabs"
-}
-],
-"templates": ["index"],
-"presets": [
-{
-"name": "Collection List Tabs",
-"category": "Tabs"
-}
-],
-"blocks": [
-{ "type": "collection_list",
-"name": "Collection list",
-"settings": [
-{
-"label": "Collection 1",
-"id": "collection_1",
-"type": "collection"
-},
-{
-"label": "Collection 2",
-"id": "collection_2",
-"type": "collection"
-},
-{
-"label": "Collection 3",
-"id": "collection_3",
-"type": "collection"
-}
+    "name": "Collection List Tabs",
+    "class": "index-section",
+    "max_blocks": 3,
 
-]
-}
+    "settings": [
+            {
+            "type": "text",
+            "id": "title",
+            "label": "Add a collection list tabs"
+            }
+        ],
+        "templates": ["index"],
+        "presets": [
+            {
+            "name": "Collection List Tabs",
+            "category": "Tabs"
+            }
+    ],
+
+"blocks": [
+    { 
+        "name": "Collection list for Tab",
+        "type": "collection_list",
+        "settings": [
+                {
+                    "type": "text",
+                    "id": "title",
+                    "label": "Add a Tab Title" 
+                },
+                {
+                "label": "Collection 1",
+                "id": "collection_1",
+                "type": "collection"                
+                },
+                {
+                "label": "Collection 2",
+                "id": "collection_2",
+                "type": "collection"
+                },
+                {
+                "label": "Collection 3",
+                "id": "collection_3",
+                "type": "collection"
+                }
+            ]
+    }
 ]
 }
 {% endschema %}
