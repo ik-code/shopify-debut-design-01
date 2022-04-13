@@ -333,7 +333,11 @@
 
       {%- endif -%}
 
-      <div class="grid__item {% if show_selectors or show_payment_icons %}one-half{% endif %} small--one-whole site-footer-item-tall">
+      <div class="grid__item {% if show_selectors or show_payment_icons %}
+      {%- comment -%}
+      one-half
+      {%- endcomment -%}    
+      {% endif %} small--one-whole site-footer-item-tall">
         {%- if social_icons -%}
           <ul class="list--inline site-footer__social-icons social-icons site-footer__icon-list">
             {%- for social in socials -%}
